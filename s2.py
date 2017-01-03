@@ -1,5 +1,4 @@
 # coding=utf-8
-#asdf
 
 import pandas as pd
 import numpy as np
