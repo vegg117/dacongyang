@@ -15,7 +15,7 @@ from sklearn.metrics import classification_report
 from sklearn import preprocessing
 from xgboost import XGBClassifier
 from xgboost import XGBRegressor
-import Feature_merge_1 as feature
+import feature_merge_1 as feature
 start = time.clock()
 
 # 数据获取
@@ -33,7 +33,7 @@ print pre_y
 
 result = pd.DataFrame({'auserid':y_id.as_matrix(), 'probability':pre_y.astype(np.float32)})
 print result.head()
-result.to_csv("/data/risk_predict/result/0103_3.csv", index=False)
+result.to_csv("../data/risk_predict/result/0103_3.csv", index=False)
 
 end = time.clock()
 print "run time: %f s" % (end - start)
