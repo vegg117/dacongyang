@@ -128,8 +128,6 @@ print df_test_data.shape
 print y_train.shape
 print y_id.shape
 
-print y_id.colums
-print type(y_id['uid'])
 
 
 x = df_train_data.values
@@ -142,7 +140,8 @@ test_len = df_test_data.shape[0]
 # 数据说明
 #   x,y 是numpy型，表示训练样本的输入输出
 #   df_train_data,df_test_data是x，y分别对应的DataFrame类型，以后考虑删除
-#   y_id 表示测试集每行id，DtateFrame类型
+#   y_id 表示测试集每行userid，是Series类型
+#
 
 
 # 模型
@@ -157,13 +156,40 @@ pre_y = rfr.predict(df_test_data)
 print pre_y
 
 
-result = pd.DataFrame({'auserid':y_id['uid'].as_matrix(), 'probability':pre_y.astype(np.float32)})
+result = pd.DataFrame({'auserid':y_id.as_matrix(), 'probability':pre_y.astype(np.float32)})
 print result.head()
 result.to_csv("/data/risk_predict/result/0103_2.csv", index=False)
 
 end = time.clock()
 print "read: %f s" % (end - start)
 exit()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 print np.sum(y)
 
 
@@ -181,7 +207,7 @@ print "pre_y_lmlr:%s" % pre_y_lmlr
 print "pre_y_lmlr:%s, %s, sum:%s" % (pre_y_lmlr, pre_y_lmlr.shape, sum(pre_y_lmlr.round()))
 
 
-rf = RandomForestRegressor(n_estimators = 100).fit(x, y)
+rf = RandomForestRegressor(n_estimators = 100, n_jobs=-1).fit(x, y)
 pre_y_rf = rf.predict(x)
 pre_y_rf.shape = (train_len, 1)
 print "pre_y_rf:%s, %s, sum:%s" % (pre_y_rf, pre_y_rf.shape, sum(pre_y_rf.round()))

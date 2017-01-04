@@ -50,6 +50,13 @@ x = t_train.values
 train_len = t_train.shape[0]
 test_len = t_test.shape[0]
 
+print type (test_data)
+print type (test_data['id'])
+print type (test_data['id'].as_matrix())
+
+
+exit()
+
 print 'ooooooooooooooooo'
 print t_train.shape
 print t_test.shape
