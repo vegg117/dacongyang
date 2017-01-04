@@ -38,6 +38,8 @@ df__train_overdue = pd.read_table("../data/risk_predict/train/overdue_train.txt"
                                    names=['uid', 'y'])
 print df__train_overdue.columns
 
+print df_test_user.shape
+
 #  1、对训练集测试集同样操作，调用子feature函数，传入子feature的df，获得处理后的数据
 def deal_all_features(fuser, fbank):
     """
@@ -118,6 +120,12 @@ print "y_id type:"
 print type (y_id)
 print "----------------------\n\n"
 
+
+print df_test_user.shape
+print df_test_bank.shape
+print df_test_data.shape
+print
+exit()
 def get_data():
     """
     :return:

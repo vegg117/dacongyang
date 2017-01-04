@@ -1,6 +1,7 @@
 # coding=utf-8
 
 from pandas import Series, DataFrame
+import pandas as pd
 import numpy as np
 from numpy import nan
 
@@ -15,6 +16,34 @@ b = DataFrame({'A':[1,2,3],
                'C':[4, nan, nan],
                'D':[9, 3, 3]
                })
+
+s1 = pd.Series([1,2,3,4,5])
+s1 = pd.Series([1,2,3,4,5])
+
+# 对于一个用户记录表，根据用户的id把记录表分组
+
+# group
+res = a[(a.A>=2)]
+print res
+print type(res)
+
+res = a[(a.A>=2)]['B']
+print type(res)
+print res
+exit()
+
+
+print type(s1)
+
+exit()
+
+c = [a, b]
+print c
+print type(c)
+print type(c[0])
+print c[1]
+
+exit()
 
 print a.shape
 print (a.values == b.values)
