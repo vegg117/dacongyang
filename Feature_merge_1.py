@@ -123,121 +123,26 @@ df_train_data.drop(['y'], axis=1, inplace=True)
 print "----------------"
 print "df_train_data的列属性有：%s\n" % df_train_data.columns
 print "df_test_data的列属性有：%s\n" % df_test_data.columns
+print "df_train_data.shape:"
 print df_train_data.shape
+print "df_test_data.shape:"
 print df_test_data.shape
+print "y_train.shape:"
 print y_train.shape
+print "y_id.shape:"
 print y_id.shape
+print "df_train_data type: "
+print type (df_train_data)
+print "df_test_data type:"
+print type (df_test_data)
+print "y_train:"
+print type (y_train)
+print "y_id type:"
+print type (y_id)
 
-
-
-x = df_train_data.values
-y = y_train.values
-
-train_len = df_train_data.shape[0]
-test_len = df_test_data.shape[0]
-
-
-# 数据说明
-#   x,y 是numpy型，表示训练样本的输入输出
-#   df_train_data,df_test_data是x，y分别对应的DataFrame类型，以后考虑删除
-#   y_id 表示测试集每行userid，是Series类型
-#
-
-
-# 模型
-
-end = time.clock()
-print "run time: %f s" % (end - start)
-
-from sklearn.ensemble import  RandomForestRegressor
-rfr = RandomForestRegressor(n_estimators=10)
-rfr.fit(x, y)
-pre_y = rfr.predict(df_test_data)
-print pre_y
-
-
-result = pd.DataFrame({'auserid':y_id.as_matrix(), 'probability':pre_y.astype(np.float32)})
-print result.head()
-result.to_csv("/data/risk_predict/result/0103_2.csv", index=False)
-
-end = time.clock()
-print "run time: %f s" % (end - start)
-exit()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-print np.sum(y)
-
-
-lmr = linear_model.Ridge().fit(x, y)
-pre_y_lmr = lmr.predict(x)
-pre_y_lmr.shape = (train_len, 1)
-print "pre_y_lmr:%s, %s, sum:%s" % (pre_y_lmr, pre_y_lmr.shape, sum(pre_y_lmr.round()))
-
-
-lmlr = linear_model.SGDRegressor(penalty='l2').fit(x, y)
-pre_y_lmlr = lmlr.predict(x)
-pre_y_lmlr.shape = (train_len, 1)
-print "pre_y_lmlr:%s" % pre_y_lmlr
-
-print "pre_y_lmlr:%s, %s, sum:%s" % (pre_y_lmlr, pre_y_lmlr.shape, sum(pre_y_lmlr.round()))
-
-
-rf = RandomForestRegressor(n_estimators = 100, n_jobs=-1).fit(x, y)
-pre_y_rf = rf.predict(x)
-pre_y_rf.shape = (train_len, 1)
-print "pre_y_rf:%s, %s, sum:%s" % (pre_y_rf, pre_y_rf.shape, sum(pre_y_rf.round()))
-
-xgb = XGBClassifier().fit(x, y)
-pre_y_xgb = xgb.predict(x)
-pre_y_xgb.shape = (train_len, 1)
-print "pre_y_xgb:%s, %s, sum:%s" % (pre_y_xgb, pre_y_xgb.shape, sum(pre_y_xgb.round()))
-
-
-x = np.concatenate((pre_y_lmr, pre_y_lmlr, pre_y_rf), axis=1)
-print x[:3, :]
-print "x, y shape: %s, %s" % (x.shape, y.shape)
-
-lmlr_embed = RandomForestRegressor(n_estimators = 100).fit(x, y)
-
-
-# 生成答案
-pre_y_lmr = lmr.predict(t_test.values)
-pre_y_lmr.shape = (test_len, 1)
-pre_y_lmlr = lmlr.predict(t_test.values)
-pre_y_lmlr.shape = (test_len, 1)
-pre_y_rf = rf.predict(t_test.values)
-pre_y_rf.shape = (test_len, 1)
-x = np.concatenate((pre_y_lmr, pre_y_lmlr, pre_y_rf), axis=1)
-pre_y_embed = lmlr_embed.predict(x)
-result = pd.DataFrame({'auserid':y_id['uid'].as_matrix(), 'probability':pre_y_embed.astype(np.float32)})
-print sum(result['probability'].round())
-print result.head()
-result.to_csv("/data/risk_predict/result/0102_2.model_embed.csv", index=False)
-
-exit()
-
+def get_data():
+    """
+    :return:
+     df_train_data
+    """
+    return df_train_data, y_train, df_test_data, y_id
