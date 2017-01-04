@@ -135,7 +135,7 @@ print "df_train_data type: "
 print type (df_train_data)
 print "df_test_data type:"
 print type (df_test_data)
-print "y_train:"
+print "y_train type:"
 print type (y_train)
 print "y_id type:"
 print type (y_id)
@@ -143,6 +143,9 @@ print type (y_id)
 def get_data():
     """
     :return:
-     df_train_data
+        df_train_data type: <class 'pandas.core.frame.DataFrame'>
+        df_test_data type: <class 'pandas.core.frame.DataFrame'>
+        y_train type: <class 'pandas.core.series.Series'>
+        y_id type: <class 'pandas.core.series.Series'
     """
     return df_train_data, y_train, df_test_data, y_id
