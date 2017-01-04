@@ -18,23 +18,23 @@ from xgboost import XGBRegressor
 
 start = time.clock()
 
-df_train_user = pd.read_table("/data/risk_predict/train/user_info_train.txt", sep=',',
+df_train_user = pd.read_table("../data/risk_predict/train/user_info_train.txt", sep=',',
                            names=['uid','sex','job','edu','marry','res'])
 
 print df_train_user.columns
 
-df_train_bank = pd.read_table("/data/risk_predict/train/bank_detail_train.txt", sep=',',
+df_train_bank = pd.read_table("../data/risk_predict/train/bank_detail_train.txt", sep=',',
                               names=['uid', 'time', 'type', 'money', 'isPayout'])
 print df_train_bank.columns
 
 
-df_test_user = pd.read_table("/data/risk_predict/test/user_info_test.txt", sep=',',
+df_test_user = pd.read_table("../data/risk_predict/test/user_info_test.txt", sep=',',
                            names=['uid','sex','job','edu','marry','res'])
 
-df_test_bank = pd.read_table("/data/risk_predict/test/bank_detail_test.txt", sep=',',
+df_test_bank = pd.read_table("../data/risk_predict/test/bank_detail_test.txt", sep=',',
                            names=['uid', 'time', 'type', 'money', 'isPayout'])
 
-data_train_overdue = pd.read_table("/data/risk_predict/train/overdue_train.txt", sep=',',
+data_train_overdue = pd.read_table("../data/risk_predict/train/overdue_train.txt", sep=',',
                                    names=['uid', 'y'])
 print data_train_overdue.columns
 

@@ -18,13 +18,13 @@ from xgboost import XGBRegressor
 import Feature_merge_1 as feature
 start = time.clock()
 
+# 数据获取
 x_train, y_train, x_test, y_id = feature.get_data()
-
 
 end = time.clock()
 print "run time: %f s" % (end - start)
 
-from sklearn.ensemble import  RandomForestRegressor
+# 模型
 rfr = RandomForestRegressor(n_estimators=10)
 rfr.fit(x_train, y_train)
 pre_y = rfr.predict(x_test)
@@ -33,7 +33,7 @@ print pre_y
 
 result = pd.DataFrame({'auserid':y_id.as_matrix(), 'probability':pre_y.astype(np.float32)})
 print result.head()
-result.to_csv("/data/risk_predict/result/0103_2.csv", index=False)
+result.to_csv("/data/risk_predict/result/0103_3.csv", index=False)
 
 end = time.clock()
 print "run time: %f s" % (end - start)
