@@ -20,7 +20,7 @@ print "用户性别缺省的个数为:%s" % len(df_train_user[df_train_user.sex 
 # 用户表特征处理
 def deal_user_feature(df):
     """
-    对除uid外所有字段
+    对除uid外所有字段进行one-hot处理
     :param df:
     :return:
     """
@@ -32,3 +32,6 @@ def deal_user_feature(df):
     df = pd.concat([df, dummies_sex, dummies_job, dummies_edu, dummies_marry, dummies_res], axis=1)
     df.drop(['sex', 'job', 'edu', 'marry', 'res'], axis=1, inplace=True)
     return df
+
+
+def 
