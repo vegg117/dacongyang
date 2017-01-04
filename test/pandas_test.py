@@ -13,14 +13,16 @@ a = DataFrame({'A':[1,2,3],
 b = DataFrame({'A':[1,2,3],
                 'B':['a', 'b', 'c'],
                'C':[4, nan, nan],
-               'D':[9, 9, 3]
+               'D':[9, 3, 3]
                })
 
 print a.shape
 print (a.values == b.values)
 
 
-
+print "(a[a.D == b.D])"
+print (a[a.D == b.D])
+print
 print a
 
 

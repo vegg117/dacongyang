@@ -15,7 +15,9 @@ from sklearn.metrics import classification_report
 from sklearn import preprocessing
 from xgboost import XGBClassifier
 from xgboost import XGBRegressor
-import feature_merge_1 as feature
+import feature_merge_2 as feature
+
+
 start = time.clock()
 
 # 数据获取
@@ -25,7 +27,7 @@ end = time.clock()
 print "run time: %f s" % (end - start)
 
 # 模型
-rfr = RandomForestRegressor(n_estimators=10)
+rfr = RandomForestRegressor(n_estimators=100)
 rfr.fit(x_train, y_train)
 pre_y = rfr.predict(x_test)
 print pre_y
