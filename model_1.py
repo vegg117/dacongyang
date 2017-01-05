@@ -20,6 +20,8 @@ import feature_merge_2 as feature
 
 start = time.clock()
 
+en_test = False
+
 # 数据获取
 x_train, y_train, x_test, y_id = feature.get_data()
 
@@ -28,7 +30,10 @@ print "run time: %f s" % (end - start)
 print "start model..."
 
 # 模型
-rfr = RandomForestRegressor(n_estimators=2)
+if en_test:
+    rfr = RandomForestRegressor(n_estimators=2)
+else:
+    rfr = RandomForestRegressor(n_estimators=100, n_jobs=-1)
 rfr.fit(x_train, y_train)
 
 print "x_train"
@@ -46,7 +51,7 @@ print
 
 result = pd.DataFrame({'auserid':y_id.as_matrix(), 'probability':pre_y.astype(np.float32)})
 print result.head()
-result.to_csv("../data/risk_predict/result/t0105_8.csv", index=False)
+result.to_csv("../data/risk_predict/result/t0105_11.csv", index=False)
 
 end = time.clock()
 print "run time: %f s" % (end - start)

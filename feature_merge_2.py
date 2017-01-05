@@ -22,16 +22,13 @@ import superTools as tool
 
 start = time.clock()
 
-
-
 df__train_overdue = pd.read_table("../data/risk_predict/train/overdue_train.txt", sep=',',
                                    names=['uid', 'y'])
 
 
-
-
-
 df_train_user, df_test_user = user.get_fea()
+
+print df_train_user.head(10)
 df_train_bank, df_test_bank = bank.get_fea()
 
 
@@ -68,8 +65,7 @@ print "\ndf_train_data的特征个数为：%s" % len(df_train_data.columns)
 df_train_data = pd.merge(df_train_data, df__train_overdue, on='uid')
 print df_train_data.columns
 print "\ndf_train_data的特征个数为：%s" % len(df_train_data.columns)
-print "拼接后的shape："
-print df_train_data.shape
+print "拼接后的shape：" , df_train_data.shape
 # print df_train_data.head(3)
 # (2)拼接 以uid为键拼接两个表4、去掉x_test、x_train的uid，并将test的uid保存到y_id
 df_test_data = pd.merge(df_test_user, df_test_bank)
@@ -129,6 +125,8 @@ def get_data():
         y_id type: <class 'pandas.core.series.Series'
     """
 
+    print '--------------------------------------'
+    print x_train
     print x_test
     print y_train
     print y_id
