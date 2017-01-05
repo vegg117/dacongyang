@@ -4,21 +4,106 @@ from pandas import Series, DataFrame
 import pandas as pd
 import numpy as np
 from numpy import nan
+import function_tool as fun
 
-a = DataFrame({'A':[1,2,3],
+a = DataFrame({'A':[1,3,2],
                 'B':['a', 'b', 'c'],
                'C':[4, nan, nan],
-               'D':[9, 9, 3]
+               'D':[2, 9, 3]
                })
 
-b = DataFrame({'A':[1,2,3],
-                'B':['a', 'b', 'c'],
-               'C':[4, nan, nan],
-               'D':[9, 3, 3]
+b = DataFrame({'A':[1,2, nan, 4],
+                'B':['a', 'b', nan, 'd'],
+               'C':[nan, nan, nan, 'd'],
+               'D':[9, 3, nan, 6]
                })
 
 s1 = pd.Series([1,2,3,4,5])
-s1 = pd.Series([1,2,3,4,5])
+s2 = pd.Series(['a','v','s','f','e'])
+s3 = pd.Series([1,2,3,4,5,6])
+
+a = 3.4
+b  = (a+3)/2
+print b
+exit()
+arr = [8, 8, 8, 8]
+b.C = arr
+print b
+
+exit()
+
+# 填充
+print type(b)
+b.fillna(0, inplace = True)
+print b
+print type(b)
+exit()
+d1 = pd.DataFrame({'a':s1, 'b':s2, 'c':s3})
+print d1
+print pd.DataFrame({'a':s1,'c':s3})
+exit()
+# 缺失值统计
+print len(b[b.C.notnull()])
+print len(b[b.C.isnull()])
+exit()
+print b.describe
+exit()
+print b.count()
+exit()
+# Series 组合 DF
+d = DataFrame({'id':s1, 'name':s2})
+print type(d)
+print d
+exit()
+print fun.get_modest_data(b)
+exit()
+s = pd.Series([])
+s[0] = 3
+print s[0]
+s[3]=4
+print s
+
+s1[5] = 999
+print s1[4]
+print s1[5]
+exit()
+print len(s1)
+
+print s1[2]
+arr1 = s1.as_matrix()
+
+print type(arr1)
+print arr1[2]
+exit()
+arr = np.array([
+    [1,10,100],
+    [2,12,102],
+    [3,13,103],
+    [2,14,104]
+    ])
+
+d = DataFrame(arr, columns=['y1', 'y2', 'y3'], index=['x1', 'x2', 'x3', 'y4'])
+s = Series(2)
+print d
+print d.shape
+print "找出所有y1=2的行  id=2"
+print d[d.y1 == 2]
+print type (d[d.y1 == 2])
+print type (d[d.y1 == 1])
+print d[d.y1 == 2].shape
+print d[d.y1 == 1].shape
+print d[d.y1 == 2]['y2']
+
+exit()
+#
+print b.C.notnull
+t = b.C.notnull
+print t
+print type(b.C.notnull)
+t = b[b.C.notnull()] #返回b的某些行元素(axis=0),这些行要求b.C.notnull对应值为True
+
+print  t
+exit()
 
 # 对于一个用户记录表，根据用户的id把记录表分组
 

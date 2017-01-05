@@ -25,17 +25,28 @@ x_train, y_train, x_test, y_id = feature.get_data()
 
 end = time.clock()
 print "run time: %f s" % (end - start)
+print "start model..."
 
 # 模型
-rfr = RandomForestRegressor(n_estimators=100)
+rfr = RandomForestRegressor(n_estimators=2)
 rfr.fit(x_train, y_train)
+
+print "x_train"
+print x_train.head()
+print "y_train"
+print y_train.head()
+print "x_test"
+print x_test.head()
+# exit()
 pre_y = rfr.predict(x_test)
 print pre_y
-
+print "一共有",len(pre_y),"条记录"
+print
+# exit()
 
 result = pd.DataFrame({'auserid':y_id.as_matrix(), 'probability':pre_y.astype(np.float32)})
 print result.head()
-result.to_csv("../data/risk_predict/result/0103_3.csv", index=False)
+result.to_csv("../data/risk_predict/result/t0105_6.csv", index=False)
 
 end = time.clock()
 print "run time: %f s" % (end - start)
