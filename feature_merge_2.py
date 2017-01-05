@@ -8,7 +8,7 @@ from pandas import Series, DataFrame
 import f1_user_feature_1 as user
 import f2_bank_feature_1 as bank
 
-import function_tool as tool
+import superTools as tool
 
 '''
     feature_merge
@@ -36,8 +36,8 @@ df_train_bank, df_test_bank = bank.get_fea()
 
 
 # test
-print df_test_bank.shape
-print df_test_user.shape
+# print df_test_bank.shape
+# print df_test_user.shape
 
 
 #exit()
@@ -62,7 +62,7 @@ df_train_data = pd.merge(df_train_user, df_train_bank, on='uid')
 print df_train_data.columns
 #print "拼接后的shape："
 print df_train_data.shape
-print df_train_data.head(3)
+# print df_train_data.head(3)
 
 print "\ndf_train_data的特征个数为：%s" % len(df_train_data.columns)
 df_train_data = pd.merge(df_train_data, df__train_overdue, on='uid')
@@ -70,10 +70,10 @@ print df_train_data.columns
 print "\ndf_train_data的特征个数为：%s" % len(df_train_data.columns)
 print "拼接后的shape："
 print df_train_data.shape
-print df_train_data.head(3)
+# print df_train_data.head(3)
 # (2)拼接 以uid为键拼接两个表4、去掉x_test、x_train的uid，并将test的uid保存到y_id
 df_test_data = pd.merge(df_test_user, df_test_bank)
-print df_train_data.head(3)
+# print df_train_data.head(3)
 
 #exit()
 
@@ -83,14 +83,14 @@ y_train = df_train_data['y']
 df_train_data.drop(['y'], axis=1, inplace=True)
 
 # test
-print y_train.shape
+# print y_train.shape
 # exit()
 
 # 4、去掉x_test、x_train的uid，并将test的uid保存到y_id
 df_train_data.drop(['uid'], axis=1, inplace=True)
 x_train = df_train_data
 y_id = df_test_data['uid']
-print "\ny_id:\n%s" % y_id.head()
+# print "\ny_id:\n%s" % y_id.head()
 df_test_data.drop(['uid'], axis=1, inplace=True)
 x_test = df_test_data
 
@@ -128,5 +128,10 @@ def get_data():
         y_train type: <class 'pandas.core.series.Series'>
         y_id type: <class 'pandas.core.series.Series'
     """
+
+    print x_test
+    print y_train
+    print y_id
+
     return x_train, y_train, x_test, y_id
 

@@ -7,10 +7,10 @@ from pandas import Series, DataFrame
 
 
 
-en_navi = True
-en_navi = False
+en_native = True
+en_native = False
 
-if(en_navi):
+if(en_native):
     df_train = pd.read_table("../data/risk_predict/train/small.user_info_train.csv", sep=',',
                              names=['uid', 'sex', 'job', 'edu', 'marry', 'res'])
 
@@ -40,7 +40,7 @@ def get_info():
     print "\n检查是否存在空值"
     print df_train.info(null_counts=True)
     # 统计用户表用户性别缺省值个数
-    print "用户性别缺省的个数为:%s" % len(df_train[df_train.sex == 0]) # 用户性别缺省数为1669
+    print "用户性别缺省的个数为:%s" % len(df_train[df_train.sex == 0])
 
 #get_info()
 
@@ -69,15 +69,13 @@ def get_fea():
     # print t_fea1.shape
     # print t_all.shape
     # print t_fea.shape
+    print "aaaaaaa"
     return n_fea1, t_fea1
 
 
 # a, b =get_fea()
 # print b.shape
 # print a.shape
-
-
-
 
 def get_test_userid():
     return df_test['uid']

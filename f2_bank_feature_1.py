@@ -7,7 +7,7 @@ from sklearn import preprocessing
 from sklearn.preprocessing import StandardScaler
 
 import f1_user_feature_1 as user
-import function_tool as tool
+import superTools as tool
 
 en_remainMoney = False
 en_transCount = True
@@ -16,10 +16,10 @@ n_fea = pd.DataFrame()
 # 测试集特征
 t_fea = pd.DataFrame()
 
-en_navi = True
-en_navi = False
+en_native = True
+en_native = False
 
-if(en_navi):
+if(en_native):
     df_train = pd.read_table("../data/risk_predict/train/small.bank_detail_train.csv", sep=',', names=['uid', 'time', 'type', 'money', 'isPayout'])
     df_test = pd.read_table("../data/risk_predict/test/small.bank_detail_test.csv", sep=',', names=['uid', 'time', 'type', 'money', 'isPayout'])
 else:
@@ -110,10 +110,9 @@ def get_transCount_fea(df_train, df_test, n_uid, t_uid):
     # print t_uid
     # exit()
 
-    # print "start get_transCount_fea, this is a long long long..."
-
+    print "start get_transCount_fea, this is a long long long..."
     n_trans = deal_transCount(df_train, n_uid)
-    # print "train bank 缺失值个数是", len(n_trans[n_trans.transCount.isnull()])
+    print "train bank 缺失值个数是", len(n_trans[n_trans.transCount.isnull()])
 
 
     print "train end, test start..."
@@ -190,6 +189,7 @@ def get_fea():
 
     print n_fea
     print t_fea
+
 
     return n_fea, t_fea
 
