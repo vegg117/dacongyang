@@ -22,6 +22,12 @@ s1 = pd.Series([1,2,3,4,5])
 s2 = pd.Series(['a','v','s','f','e'])
 s3 = pd.Series([1,2,3,4,5,6])
 
+arr = [8, -1, 8, -4]
+
+arr = arr +1
+print arr
+exit()
+
 a = 3.4
 b  = (a+3)/2
 print b

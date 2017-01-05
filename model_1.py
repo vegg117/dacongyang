@@ -28,7 +28,7 @@ print "run time: %f s" % (end - start)
 print "start model..."
 
 # 模型
-rfr = RandomForestRegressor(n_estimators=2)
+rfr = RandomForestRegressor(n_estimators=10)
 rfr.fit(x_train, y_train)
 
 print "x_train"
@@ -46,7 +46,7 @@ print
 
 result = pd.DataFrame({'auserid':y_id.as_matrix(), 'probability':pre_y.astype(np.float32)})
 print result.head()
-result.to_csv("../data/risk_predict/result/t0105_6.csv", index=False)
+result.to_csv("../data/risk_predict/result/t0105_7.csv", index=False)
 
 end = time.clock()
 print "run time: %f s" % (end - start)

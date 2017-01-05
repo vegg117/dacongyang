@@ -141,15 +141,15 @@ def get_transCount_fea(df_train, df_test, n_uid, t_uid):
     print n_tc
     print t_tc
 
-    n_tc = (n_tc+1)/2
-    t_tc = (t_tc+1)/2
+    # n_tc = (n_tc+1)/2
+    # t_tc = (t_tc+1)/2
     n_trans.transCount = n_tc
     t_trans.transCount = t_tc
 
     print n_trans.head()
     print t_trans.head()
 
-    # print "transcation count 归一化后负值个数分别为", len(n_trans[n_trans.transCount < 0]), len(t_trans[t_trans.transCount < 0])
+    print "transcation count 归一化后负值个数分别为", len(n_trans[n_trans.transCount < 0]), len(t_trans[t_trans.transCount < 0])
 
     return n_trans, t_trans
 
