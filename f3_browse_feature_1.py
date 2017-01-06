@@ -10,7 +10,7 @@ import f1_user_feature_1 as user
 
 
 df_train = pd.read_table("../data/risk_predict/train/browse_history_train.txt", sep=',',
-                              names=['uid', 'time', 'behaviour', 'subBehId'])
+                              names=['uid', 'time', 'behaviour', 'subId'])
 
 
 # 数据清洗
@@ -27,8 +27,8 @@ def get_info():
     print "时间戳缺省的个数为:%s" % len(df_train[df_train.time == 0])
     print "用户浏览行为最大最小值：", max(df_train.behaviour)
     print "用户浏览行为最大值：", max(df_train.behaviour) - min(df_train.behaviour)
-    print "用户浏览子行为最大值：", max(df_train.subBehId)
-    print "用户浏览子行为最大最小值差：", max(df_train.subBehId) - min(df_train.subBehId)
+    print "用户浏览子行为最大值：", max(df_train.subId)
+    print "用户浏览子行为最大最小值差：", max(df_train.subId) - min(df_train.subId)
 
     '''
         观察发现：
