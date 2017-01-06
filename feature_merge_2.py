@@ -7,7 +7,7 @@ from pandas import Series, DataFrame
 
 import f1_user_feature_1 as user
 import f2_bank_feature_1 as bank
-
+import f3_browse_feature_1 as browse
 import superTools as tool
 
 '''
@@ -30,6 +30,8 @@ df_train_user, df_test_user = user.get_fea()
 
 print df_train_user.head(10)
 df_train_bank, df_test_bank = bank.get_fea()
+
+df_train_browse, df_test_browse = browse.get_fea()
 
 
 # test
@@ -56,6 +58,7 @@ print "\n\n\n\n\n\n\n2、拼接..."
 print "\ndf_train_user的特征个数为：%s" % len(df_train_user.columns)
 print "\ndf_train_bank的特征个数为：%s" % len(df_train_bank.columns)
 df_train_data = pd.merge(df_train_user, df_train_bank, on='uid')
+df_train_data = pd.merge(df_train_data, df_train_browse, on='uid')
 print df_train_data.columns
 #print "拼接后的shape："
 # print df_train_data.shape
@@ -68,7 +71,8 @@ print "\ndf_train_data的特征个数为：%s" % len(df_train_data.columns)
 print "拼接后的shape：" , df_train_data.shape
 # print df_train_data.head(3)
 # (2)拼接 以uid为键拼接两个表4、去掉x_test、x_train的uid，并将test的uid保存到y_id
-df_test_data = pd.merge(df_test_user, df_test_bank)
+df_test_data = pd.merge(df_test_user, df_test_bank, on='uid')
+df_test_data = pd.merge(df_test_data, df_test_browse, on='uid')
 # print df_train_data.head(3)
 
 #exit()
