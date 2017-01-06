@@ -20,15 +20,28 @@ b = DataFrame({'A':[1,2, nan, 4],
                'D':[9, 3, nan, 6]
                })
 
-s1 = pd.Series([1,2,3,4,5])
+s1 = pd.Series([5,2,1,4,3])
 s2 = pd.Series(['a','v','s','f','e'])
-s3 = pd.Series([1,2,3,4,5,6])
+s3 = pd.Series([3,4,5,1,2,6])
 
 c = DataFrame(s1, s2)
 
 arr = np.array([8, -1, 8, -4])
 
 
+print a['A'][1]
+exit()
+for s in s1:
+    s3[s] = str(s)+"aa"
+print s3
+
+exit()
+a = 3
+a = str(a) + "ffsadfff"
+print a
+exit()
+
+exit()
 print a.A.is_unique
 exit()
 print a

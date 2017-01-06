@@ -69,7 +69,7 @@ def get_fea():
     # print t_fea1.shape
     # print t_all.shape
     # print t_fea.shape
-    print "aaaaaaa"
+
     return n_fea1, t_fea1
 
 

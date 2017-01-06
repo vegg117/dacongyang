@@ -12,7 +12,7 @@ import superTools as tool
 
 '''
     feature_merge
-     1、获取各表的特征处理结果。对训练集测试集同样操作，调用分feature函数，传入分feature的df，获得处理后的数据
+     1、获取各表的特征处理结果。
      2、拼接。
         将各表特征按uid拼接为一个表。分为train和test
         （1）将训练集的特征和结果y按uid拼接;
@@ -42,10 +42,10 @@ df_train_bank, df_test_bank = bank.get_fea()
 
 
 print "\n\n\n\n\n\n\n2、拼接..."
-print "拼接前user bank overdue .shape"
-print df_train_user.shape
-print df_train_bank.shape
-print df__train_overdue.shape
+# print "拼接前user bank overdue .shape"
+# print df_train_user.shape
+# print df_train_bank.shape
+# print df__train_overdue.shape
 # print df_train_user.head(2)
 # print df_train_bank.head(2)
 
@@ -58,7 +58,7 @@ print "\ndf_train_bank的特征个数为：%s" % len(df_train_bank.columns)
 df_train_data = pd.merge(df_train_user, df_train_bank, on='uid')
 print df_train_data.columns
 #print "拼接后的shape："
-print df_train_data.shape
+# print df_train_data.shape
 # print df_train_data.head(3)
 
 print "\ndf_train_data的特征个数为：%s" % len(df_train_data.columns)
