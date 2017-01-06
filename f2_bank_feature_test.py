@@ -5,13 +5,20 @@ import numpy as np
 from pandas import Series, DataFrame
 from sklearn import preprocessing
 from sklearn.preprocessing import StandardScaler
-import f2_bank_feature_1 as bank
+import f2_bank_feature_1 as bank_detail_test
 
 
 def test_get_transCount_fea():
-    df_train = pd.DataFrame({'uid':[1, 1, 2, 3],
-                             'type': [0, 1, 1, 1]
-                            })
+
+    a = np.array([
+        [1, 0],
+        [1, 1],
+        [2, 1],
+        [3, 1]
+    ])
+    print a
+    df_train = pd.DataFrame(a, columns=['uid', 'type'])
+    print df_train
     df_y = pd.DataFrame({'uid':[1, 2, 3, 4, 5],
                          'y': [1, 0, 0, 1, 0]})
 

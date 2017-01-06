@@ -6,15 +6,17 @@ import numpy as np
 from numpy import nan
 import function_tool as fun
 
-a = DataFrame({'A':[1,3,2],
-                'B':['a', 'b', 'c'],
-               'C':[4, nan, nan],
-               'D':[2, 9, 3]
-               })
+
+a = np.array([
+    [1, 'a', 4, 2],
+    [3, 'b', nan, 'c'],
+    [1, 'c', nan, 3]
+    ])
+a = DataFrame(a, columns=['A', 'B', 'C', 'D'])
 
 b = DataFrame({'A':[1,2, nan, 4],
                 'B':['a', 'b', nan, 'd'],
-               'C':[nan, nan, nan, 'd'],
+               'C':[nan, nan, nan, nan],
                'D':[9, 3, nan, 6]
                })
 
@@ -22,8 +24,21 @@ s1 = pd.Series([1,2,3,4,5])
 s2 = pd.Series(['a','v','s','f','e'])
 s3 = pd.Series([1,2,3,4,5,6])
 
+c = DataFrame(s1, s2)
+
 arr = np.array([8, -1, 8, -4])
 
+
+print a.A.is_unique
+exit()
+print a
+print b.info(null_counts=True)
+print c.info(null_counts=True)
+exit()
+print max(a.D)
+print max(a)
+
+exit()
 arr = arr+1
 print arr
 exit()

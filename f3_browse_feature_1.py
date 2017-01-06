@@ -1,43 +1,43 @@
 # coding=utf-8
 
+
 import pandas as pd
 import numpy as np
 from pandas import Series, DataFrame
 from sklearn import preprocessing
 
+import f1_user_feature_1 as user
 
-df_train_browse = pd.read_table("../data/risk_predict/train/browse_history_train.txt", sep=',',
+
+df_train = pd.read_table("../data/risk_predict/train/browse_history_train.txt", sep=',',
                               names=['uid', 'time', 'behaviour', 'subBehId'])
 
 
 # 数据清洗
 def get_info():
-    print "browse_history_train表信息："
-    print df_train_browse.describe()
-    print
-    print df_train_browse.count()
-    print
-    print "shape:"
-    print df_train_browse.shape
-    print df_train_browse.info(null_counts=True)
-    print
-    print "用户id是否唯一："
-    print df_train_browse.uid.is_unique
-    print
-    print "时间戳缺省的个数为:%s" % len(df_train_browse[df_train_browse.time == 0])
-    print
-    print "用户浏览行为最大最小值差："
-    print max(df_train_browse.behaviour) - min(df_train_browse.behaviour)
-    print
-    print "用户浏览行为最大最小值差："
-    print max(df_train_browse.subBehId) - min(df_train_browse.subBehId)
+    uNum = len(df_train.uid.unique())
+    print "------------------------\nbrowse_history_train表信息\n"
+    # print "describe：\n", df_train.describe()
+    print "\ninfo:\n", df_train.info(null_counts=True)
+    print "\ncount:\n", df_train.count()
+    print "\nshape:" , df_train.shape
+    print "该表存在的用户数：", uNum
+    print "一个用户的记录数是否唯一：", df_train.uid.is_unique
+    print "没有该表记录的用户数：", (len(user.get_train_userid())-uNum)
+    print "时间戳缺省的个数为:%s" % len(df_train[df_train.time == 0])
+    print "用户浏览行为最大最小值：", max(df_train.behaviour)
+    print "用户浏览行为最大值：", max(df_train.behaviour) - min(df_train.behaviour)
+    print "用户浏览子行为最大值：", max(df_train.subBehId)
+    print "用户浏览子行为最大最小值差：", max(df_train.subBehId) - min(df_train.subBehId)
 
     '''
         观察发现：
-            一个用户会有多条记录
+        train：
+            总用户数：55596, 该表用户数：47330，有8266个用户没有记录
+            一个用户有多条记录，也不是所有的用户均有记录
             时间没有缺省
-            用户浏览行为最大最小差215
-            浏览子行为编号差10
+            用户浏览行为最大最小差215, 最大值为215
+            浏览子行为编号差10，最大值为11
     '''
 get_info()
 exit()

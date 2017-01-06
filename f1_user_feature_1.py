@@ -79,3 +79,5 @@ def get_fea():
 
 def get_test_userid():
     return df_test['uid']
+def get_train_userid():
+    return df_train['uid']
