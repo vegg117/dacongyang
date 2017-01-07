@@ -31,7 +31,7 @@ n_fea = pd.DataFrame({'uid':n_userid})
 t_fea = pd.DataFrame({'uid':t_userid})
 
 print "user test has", df_test.shape[0], "条记录"
-print "user test has", len(t_userid), "record"
+print "user test has", len(t_userid), "user"
 # exit()
 def get_info():
     print "查看用户id是否唯一："

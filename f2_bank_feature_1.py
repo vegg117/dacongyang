@@ -10,7 +10,7 @@ import f1_user_feature_1 as user
 import superTools as tool
 
 en_remainMoney = False
-en_transCount = True
+en_transCount = False
 
 #
 # tres = pd.read_table("../data/risk_predict/train/overdue_train.txt", sep=',',
@@ -149,7 +149,7 @@ def get_fea():
                              names=['uid', 'time', 'type', 'money', 'isWage'])
     df_test = pd.read_table("../data/risk_predict/test/bank_detail_test.txt", sep=',',
                             names=['uid', 'time', 'type', 'money', 'isWage'])
-    n_userid = df_train['uid'].unique()
+    n_userid = user.get_train_userid()
     n_fea = pd.DataFrame({'uid': n_userid})
     print "train bank has", df_train.shape[0], "record"  #
     print "train bank has", len(n_userid), "user"

@@ -29,6 +29,18 @@ c = DataFrame(s1, s2)
 arr = np.array([8, -1, 8, -4])
 
 
+
+import datetime
+import time
+starttime = datetime.datetime.now()
+
+time.sleep(10)
+k = 0
+
+endtime = datetime.datetime.now()
+print (endtime - starttime).total_seconds()
+
+exit()
 print a['A'][1]
 exit()
 for s in s1:

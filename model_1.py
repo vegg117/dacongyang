@@ -1,6 +1,6 @@
 # coding=utf-8
 
-import time
+import datetime
 import pandas as pd
 import numpy as np
 from pandas import Series, DataFrame
@@ -16,18 +16,20 @@ from sklearn import preprocessing
 from xgboost import XGBClassifier
 from xgboost import XGBRegressor
 import feature_merge_2 as feature
+import f1_user_feature_1 as user
 
 
-start = time.clock()
+starttime = datetime.datetime.now()
 
-en_test = False
+en_test = True
 
 # 数据获取
 x_train, y_train, x_test, y_id = feature.get_data()
 
-end = time.clock()
-print "run time: %f s" % (end - start)
+endtime = datetime.datetime.now()
+print "run time is:", (endtime - starttime).seconds
 print "start model..."
+starttime = datetime.datetime.now()
 
 # 模型
 if en_test:
@@ -46,6 +48,7 @@ print x_test.head()
 pre_y = rfr.predict(x_test)
 print pre_y
 print "一共有",len(pre_y),"条记录"
+print "正常应有", len(user.get_test_userid()), "条记录"
 print
 # exit()
 
@@ -53,8 +56,8 @@ result = pd.DataFrame({'auserid':y_id.as_matrix(), 'probability':pre_y.astype(np
 print result.head()
 result.to_csv("../data/risk_predict/result/t0105_11.csv", index=False)
 
-end = time.clock()
-print "run time: %f s" % (end - start)
+endtime = datetime.datetime.now()
+print "the time of model which is ran is:", (endtime - starttime).seconds
 exit()
 
 

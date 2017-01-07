@@ -60,6 +60,14 @@ def stdscaler():
     d1 = ss.fit_transform(df_train['behaviour'])
     print d1
 
-
+import datetime
+import time
+starttime = datetime.datetime.now()
+print "aaaaaaaaaaaaaaa"
 test_get_behavi_fea()
 # stdscaler()
+print "asddddddddddddddddd"
+
+
+endtime = datetime.datetime.now()
+print (endtime - starttime).seconds

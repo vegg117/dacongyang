@@ -10,7 +10,7 @@ from sklearn.preprocessing import StandardScaler
 import f1_user_feature_1 as user
 
 
-en_behaviCnt = True #
+en_behaviCnt = False #
 
 def get_info(df):
     uNum = len(df.uid.unique())
@@ -70,9 +70,8 @@ def deal_behavi(df):
     return
 
 def behavi_fea(df, uid, behavi):
-    print "------------------"
+    # print "------------------"
     # 一个用户可能有多条记录，下面统计每个用户对于每种浏览行为的发生次数
-    # print leng
     for u in uid:
         # print u
         record = df[df['uid'] == u]
@@ -94,6 +93,8 @@ def behavi_fea(df, uid, behavi):
     # print 'behavi:\n', behavi
     return behavi
 def get_behavi_fea(df_train, df_test, n_uid, t_uid):
+    # -1 统计浏览行为的发生次数，浏览行为发生较少的不作为特征
+
 
     # 0 获得浏览行为序列，作为特征
     nbh = Series(df_train.behaviour.unique())
@@ -199,7 +200,10 @@ def get_behavi_fea(df_train, df_test, n_uid, t_uid):
 
 def get_fea():
 
-
+    # 训练集特征
+    n_fea = pd.DataFrame()
+    # 测试集特征
+    t_fea = pd.DataFrame()
 
     df_train = pd.read_table("../data/risk_predict/train/browse_history_train.txt", sep=',',
                              names=['uid', 'time', 'behaviour', 'subId'])
@@ -208,13 +212,20 @@ def get_fea():
 
     n_uid = user.get_train_userid()
     t_uid = user.get_test_userid()
-    print type(n_uid)
+    # print type(n_uid)
+    n_fea = pd.DataFrame({'uid': n_uid})
+    t_fea = pd.DataFrame({'uid': t_uid})
 
-    n_be_cnt_fea, t_be_cnt_fea, n_bes_cnt, t_bes_cnt = get_behavi_fea(df_train, df_test, n_uid, t_uid)
+    if en_behaviCnt:
+        n_be_cnt_fea, t_be_cnt_fea, n_bes_cnt, t_bes_cnt = get_behavi_fea(df_train, df_test, n_uid, t_uid)
 
-    n_fea = pd.merge(n_be_cnt_fea, n_bes_cnt, on='uid')
-    t_fea = pd.merge(t_be_cnt_fea, t_bes_cnt, on='uid')
+        n_fea = pd.merge(n_fea, n_be_cnt_fea, on='uid')
+        t_fea = pd.merge(t_fea, t_be_cnt_fea, on='uid')
 
-    print 'n_fea:\n', n_fea
+        n_fea = pd.merge(n_fea, n_bes_cnt, on='uid')
+        t_fea = pd.merge(t_fea, t_bes_cnt, on='uid')
+
+
+    # print 'n_fea:\n', n_fea
     return n_fea, t_fea
 # get_fea()

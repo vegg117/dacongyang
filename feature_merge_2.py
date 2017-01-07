@@ -31,6 +31,7 @@ df_train_user, df_test_user = user.get_fea()
 print df_train_user.head(10)
 df_train_bank, df_test_bank = bank.get_fea()
 
+
 df_train_browse, df_test_browse = browse.get_fea()
 
 
@@ -129,11 +130,11 @@ def get_data():
         y_id type: <class 'pandas.core.series.Series'
     """
 
-    print '--------------------------------------'
-    print x_train
-    print x_test
-    print y_train
-    print y_id
+    # print '--------------------------------------'
+    # print x_train
+    # print x_test
+    # print y_train
+    # print y_id
 
     return x_train, y_train, x_test, y_id
 
